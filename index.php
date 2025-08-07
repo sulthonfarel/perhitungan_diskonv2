@@ -31,6 +31,8 @@
                 </form>
                 <div id="hasil">
                     <?php
+                    include 'koneksi.php';
+
                     if (isset($_POST['hitung'])){
                         $harga = $_POST['harga'];
                         $diskon = $_POST['diskon'];
@@ -40,7 +42,11 @@
                             echo "<script>alert('Diskon harus diantara angka 0-100 !')</script>";
                         }else{
                             $nilai_diskon = $harga * ($diskon/100);
-                            $total_harga = $harga - $nilai_diskon; ?>
+                            $total_harga = $harga - $nilai_diskon;
+                            // Simpan ke database (cara sederhana)
+                            $query = "INSERT INTO transaksi (harga, diskon, total_harga) VALUES ('$harga', '$diskon', '$total_harga')";
+                            mysqli_query($koneksi, $query);
+?>
                             <div id="hasil" class="border rounded p-2 bg-light mt-2">
                                 <p>Harga Barang : Rp. <b><?php echo number_format($harga,2,',','.') ?></b></p>
                                 <p>Diskon <?php echo $diskon ?>% : Rp. <b><?php echo number_format($nilai_diskon,2,',','.') ?></b></p>
