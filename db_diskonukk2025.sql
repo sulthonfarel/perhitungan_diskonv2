@@ -1,10 +1,11 @@
-CREATE DATABASE db_diskonpamajid;
-USE db_diskonpamajid;
+CREATE DATABASE db_diskonukk2025;
+USE db_diskonukk2025;
 
 CREATE TABLE transaksi(
     id_transaksi INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
     harga INT NOT NULL,
     diskon INT NOT NULL,
     total_harga INT NOT NULL,
-    tangal DATETIME DEFAULT CURRENT_TIMESTAMP
+    tanggal DATETIME DEFAULT CURRENT_TIMESTAMP
 );
